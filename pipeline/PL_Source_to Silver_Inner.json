@@ -16,16 +16,11 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "AzureSqlSource",
-						"sqlReaderQuery": {
-							"value": "select * from ctrl.table_config\nwhere table_id =@{pipeline().parameters.table_id}",
-							"type": "Expression"
-						},
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+						"type": "PostgreSqlV2Source",
+						"queryTimeout": "02:00:00"
 					},
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "DS_PostgreSql",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": true
