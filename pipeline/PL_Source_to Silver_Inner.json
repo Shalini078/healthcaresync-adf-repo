@@ -16,14 +16,19 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "PostgreSqlV2Source",
-						"queryTimeout": "02:00:00"
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": {
+							"value": "select table_idfrom ctrl.table_config where is_active=1 and source_system='@{pipeline().parameters.source_system}'",
+							"type": "Expression"
+						},
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "DS_PostgreSql",
+						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
-					"firstRowOnly": true
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -199,6 +204,10 @@
 			"table_id": {
 				"type": "string",
 				"defaultValue": "1"
+			},
+			"source_system": {
+				"type": "string",
+				"defaultValue": "neon_postgres"
 			}
 		},
 		"variables": {
