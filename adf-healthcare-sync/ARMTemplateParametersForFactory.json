@@ -1,0 +1,36 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-healthcare-sync"
+		},
+		"LA_KeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://heakthcaresync-Keyvault.vault.azure.net/"
+		},
+		"LS_ADLS_properties_typeProperties_url": {
+			"value": "https://healthcaresyncstorage.dfs.core.windows.net/"
+		},
+		"LS_PostgreSQL_properties_typeProperties_server": {
+			"value": "ep-spring-resonance-a1j1hj1b-pooler.ap-southeast-1.aws.neon.tech"
+		},
+		"LS_PostgreSQL_properties_typeProperties_database": {
+			"value": "neondb"
+		},
+		"LS_PostgreSQL_properties_typeProperties_username": {
+			"value": "neondb_owner"
+		},
+		"LS_SQLDatabase_properties_typeProperties_server": {
+			"value": "healthcaresync-server.database.windows.net"
+		},
+		"LS_SQLDatabase_properties_typeProperties_database": {
+			"value": "sql-db-healthcare"
+		},
+		"LS_SQLDatabase_properties_typeProperties_userName": {
+			"value": "sysadmin"
+		},
+		"LS_azuredatabricks_properties_typeProperties_existingClusterId": {
+			"value": "1106-191111-567slxwb"
+		}
+	}
+}

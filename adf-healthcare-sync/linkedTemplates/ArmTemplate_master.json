@@ -1,0 +1,105 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-healthcare-sync"
+		},
+		"LA_KeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://heakthcaresync-Keyvault.vault.azure.net/"
+		},
+		"LS_ADLS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://healthcaresyncstorage.dfs.core.windows.net/"
+		},
+		"LS_PostgreSQL_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "ep-spring-resonance-a1j1hj1b-pooler.ap-southeast-1.aws.neon.tech"
+		},
+		"LS_PostgreSQL_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "neondb"
+		},
+		"LS_PostgreSQL_properties_typeProperties_username": {
+			"type": "string",
+			"defaultValue": "neondb_owner"
+		},
+		"LS_SQLDatabase_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "healthcaresync-server.database.windows.net"
+		},
+		"LS_SQLDatabase_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "sql-db-healthcare"
+		},
+		"LS_SQLDatabase_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sysadmin"
+		},
+		"LS_azuredatabricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1106-191111-567slxwb"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-healthcare-sync_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"LA_KeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('LA_KeyVault_properties_typeProperties_baseUrl')]"
+					},
+					"LS_ADLS_properties_typeProperties_url": {
+						"value": "[parameters('LS_ADLS_properties_typeProperties_url')]"
+					},
+					"LS_PostgreSQL_properties_typeProperties_server": {
+						"value": "[parameters('LS_PostgreSQL_properties_typeProperties_server')]"
+					},
+					"LS_PostgreSQL_properties_typeProperties_database": {
+						"value": "[parameters('LS_PostgreSQL_properties_typeProperties_database')]"
+					},
+					"LS_PostgreSQL_properties_typeProperties_username": {
+						"value": "[parameters('LS_PostgreSQL_properties_typeProperties_username')]"
+					},
+					"LS_SQLDatabase_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQLDatabase_properties_typeProperties_server')]"
+					},
+					"LS_SQLDatabase_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQLDatabase_properties_typeProperties_database')]"
+					},
+					"LS_SQLDatabase_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQLDatabase_properties_typeProperties_userName')]"
+					},
+					"LS_azuredatabricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('LS_azuredatabricks_properties_typeProperties_existingClusterId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
